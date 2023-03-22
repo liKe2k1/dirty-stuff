@@ -5,8 +5,8 @@
 // @icon         https://akte.dirty-gaming.com/img/favicon.png
 // @match        https://akte.dirty-gaming.com/buerger/*
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js
-// @updateURL  https://raw.githubusercontent.com/liKe2k1/dirty-stuff/main/akte-show-user-id.js
-// @downloadURL  https://raw.githubusercontent.com/liKe2k1/dirty-stuff/main/akte-show-user-id.js
+// @updateURL  https://raw.githubusercontent.com/liKe2k1/dirty-stuff/main/akte-show-user-id.user.js
+// @downloadURL  https://raw.githubusercontent.com/liKe2k1/dirty-stuff/main/akte-show-user-id.user.js
 // @run-at       document-end
 // @grant        none
 // ==/UserScript==
