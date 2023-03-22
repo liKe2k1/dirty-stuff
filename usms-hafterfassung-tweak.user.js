@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         USMS - Hafterfassungstweak
 // @namespace    http://akte.dirty-gaming.net/
-// @version      1.5
+// @version      1.6
 // @description  Überträgt die Häftlingsdaten aus der Hafttabelle in die Erfassung
 // @author       USMS-30 / Jil Brown
 // @match        https://docs.google.com/*
