@@ -4,7 +4,6 @@
 // @version      1.1
 // @description  Überträgt automatisch die Häftlingsdaten aus der Hafttabelle in die Erfassung
 // @author       USMS-30 / Jil Brown
-// @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        unsafeWindow
 // @match        https://docs.google.com/*
 // @match        https://akte.dirty-gaming.com/*
@@ -72,76 +71,48 @@ function fillUser(userId) {
     });
 }
 
+function parseTable(type)
+{
+    let inmates = [];
+    if( $("#" + type).length ) {
+        $("#" + type + ">table>tbody>tr").each(function(rowIdx, rows) {
+            let inmate = {};
+            $(rows).find('td').each(function(key, item) {
+                inmate['sleeping'] = (type == 'wach' ? false : true);
+                if (key == 0) {
+                    const regexIdName = /\=".*\">([0-9]+)\s(.+)<\//gm;
+                    let m;
+                    while ((m = regexIdName.exec( $(item).html() )) !== null) {
+                        if (m.index === regexIdName.lastIndex) {
+                            regexIdName.lastIndex++;
+                        }
+                        inmate['userId'] = m[1];
+                        inmate['name'] = m[2];
+                    }
+                }
+                if (key == 1) inmate['created'] = $(item).html();
+                if (key == 2) inmate['caseNo'] = $(item).html();
+                if (key == 6) {
+                    const regexIdName = /.*ort.*value="(.+)"/gm;
+                    let m;
+                    while ((m = regexIdName.exec( $(item).html() )) !== null) {
+                        if (m.index === regexIdName.lastIndex) {
+                            regexIdName.lastIndex++;
+                        }
+                        inmate['location'] = m[1];
+                    }
+                }
+                if (key == 7) inmate['detentionTime'] = $(item).html().replace(/\n/g, "");
+            });
+            inmates.push(inmate);
+        });
+    }
+    return inmates;
+}
 
 function fetchInmates()
 {
-    let inmates = [];
-    if( $("#wach").length ) {
-        $("#wach>table>tbody>tr").each(function(rowIdx, rows) {
-            let inmate = {};
-            $(rows).find('td').each(function(key, item) {
-                inmate['sleeping'] = false;
-                if (key == 0) {
-                    const regexIdName = /\=".*\">([0-9]+)\s(.+)<\//gm;
-                    let m;
-                    while ((m = regexIdName.exec( $(item).html() )) !== null) {
-                        if (m.index === regexIdName.lastIndex) {
-                            regexIdName.lastIndex++;
-                        }
-                        inmate['userId'] = m[1];
-                        inmate['name'] = m[2];
-                    }
-                }
-                if (key == 1) inmate['created'] = $(item).html();
-                if (key == 2) inmate['caseNo'] = $(item).html();
-                if (key == 6) {
-                    const regexIdName = /.*ort.*value="(.+)"/gm;
-                    let m;
-                    while ((m = regexIdName.exec( $(item).html() )) !== null) {
-                        if (m.index === regexIdName.lastIndex) {
-                            regexIdName.lastIndex++;
-                        }
-                        inmate['location'] = m[1];
-                    }
-                }
-                if (key == 7) inmate['detentionTime'] = $(item).html().replace(/\n/g, "");
-            });
-            inmates.push(inmate);
-        });
-    }
-    if( $("#schlafend").length ) {
-        $("#schlafend>table>tbody>tr").each(function(rowIdx, rows) {
-            let inmate = {};
-            $(rows).find('td').each(function(key, item) {
-                inmate['sleeping'] = true;
-
-                if (key == 0) {
-                    const regexIdName = /\=".*\">([0-9]+)\s(.+)<\//gm;
-                    let m;
-                    while ((m = regexIdName.exec( $(item).html() )) !== null) {
-                        if (m.index === regexIdName.lastIndex) {
-                            regexIdName.lastIndex++;
-                        }
-                        inmate['userId'] = m[1];
-                        inmate['name'] = m[2];
-                    }
-                }
-                if (key == 1) inmate['created'] = $(item).html();
-                if (key == 2) inmate['caseNo'] = $(item).html();
-                if (key == 6) {
-                    const regexIdName = /.*ort.*value="(.+)"/gm;
-                    let m;
-                    while ((m = regexIdName.exec( $(item).html() )) !== null) {
-                        if (m.index === regexIdName.lastIndex) {
-                            regexIdName.lastIndex++;
-                        }
-                        inmate['location'] = m[1];
-                    }
-                }
-                if (key == 7) inmate['detentionTime'] = $(item).html().replace(/\n/g, "");
-            });
-            inmates.push(inmate);
-        });
-    }
+    inmates = parseTable('wach')
+    inmates += parseTable('schlafend')
     GM_setValue("inmates", JSON.stringify(inmates));
 }
