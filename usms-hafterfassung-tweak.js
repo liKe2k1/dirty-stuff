@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         USMS - Hafterfassungstweak
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.4
 // @description  Überträgt automatisch die Häftlingsdaten aus der Hafttabelle in die Erfassung
 // @author       USMS-30 / Jil Brown
 // @grant        unsafeWindow
@@ -39,7 +39,7 @@
                 let inmatesLoaded = JSON.parse(GM_getValue("inmates"));
                 let tpl = '';
                 $(inmatesLoaded).each(function(key, item) {
-                    tpl += '<a href="#" class="inmate-list-link" data-id="' + item.userId + '">' + item.name + ' [' +  item.userId + ']</a>';
+                    tpl += '<a href="#" class="inmate-list-link ' + (item.sleeping ? 'sleeping':'awake') + '" data-id="' + item.userId + '">' + item.name + ' [' +  item.userId + ']</a>';
                 });
                 iframeElement.find('#tampermonkey-inmates').html(tpl);
                 iframeElement.find('#tampermonkey-inmates').show();
@@ -112,7 +112,7 @@ function parseTable(type)
 
 function fetchInmates()
 {
-    inmates = parseTable('wach')
-    inmates += parseTable('schlafend')
+    let inmatesAwake = parseTable('wach')
+    let inmates = inmatesAwake.concat(parseTable('schlafend'))
     GM_setValue("inmates", JSON.stringify(inmates));
 }
