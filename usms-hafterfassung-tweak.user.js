@@ -1,20 +1,18 @@
 // ==UserScript==
 // @name         USMS - Hafterfassungstweak
-// @namespace    http://tampermonkey.net/
+// @namespace    http://akte.dirty-gaming.net/
 // @version      1.5
-// @description  Überträgt automatisch die Häftlingsdaten aus der Hafttabelle in die Erfassung
+// @description  Überträgt die Häftlingsdaten aus der Hafttabelle in die Erfassung
 // @author       USMS-30 / Jil Brown
-// @grant        unsafeWindow
 // @match        https://docs.google.com/*
 // @match        https://akte.dirty-gaming.com/*
 // @match        https://*.googleusercontent.com/*
-// @run-at       document-end
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js
-// @require      http://userscripts-mirror.org/scripts/source/107941.user.js
 // @downloadURL  https://raw.githubusercontent.com/liKe2k1/dirty-stuff/main/usms-hafterfassung-tweak.user.js
 // @updateURL    https://raw.githubusercontent.com/liKe2k1/dirty-stuff/main/usms-hafterfassung-tweak.user.js
 // @grant        GM_setValue
 // @grant        GM_getValue
+// @run-at       document-end
 // ==/UserScript==
 
 (function() {
