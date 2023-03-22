@@ -11,8 +11,8 @@
 // @run-at       document-end
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js
 // @require      http://userscripts-mirror.org/scripts/source/107941.user.js
-// @downloadURL  https://raw.githubusercontent.com/liKe2k1/dirty-stuff/main/usms-hafterfassung-tweak.js
-// @updateURL    https://raw.githubusercontent.com/liKe2k1/dirty-stuff/main/usms-hafterfassung-tweak.js
+// @downloadURL  https://raw.githubusercontent.com/liKe2k1/dirty-stuff/main/usms-hafterfassung-tweak.user.js
+// @updateURL    https://raw.githubusercontent.com/liKe2k1/dirty-stuff/main/usms-hafterfassung-tweak.user.js
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @grant        GM.setValue
