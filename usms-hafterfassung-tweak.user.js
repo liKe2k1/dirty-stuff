@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         USMS - Hafterfassungstweak
 // @namespace    http://tampermonkey.net/
-// @version      1.4
+// @version      1.5
 // @description  Überträgt automatisch die Häftlingsdaten aus der Hafttabelle in die Erfassung
 // @author       USMS-30 / Jil Brown
 // @grant        unsafeWindow
@@ -15,13 +15,6 @@
 // @updateURL    https://raw.githubusercontent.com/liKe2k1/dirty-stuff/main/usms-hafterfassung-tweak.user.js
 // @grant        GM_setValue
 // @grant        GM_getValue
-// @grant        GM.setValue
-// @grant        GM.getValue
-// @grant        GM_setClipboard
-// @grant        unsafeWindow
-// @grant        window.close
-// @grant        window.focus
-// @grant        window.onurlchange
 // ==/UserScript==
 
 (function() {
